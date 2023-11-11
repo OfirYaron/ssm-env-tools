@@ -1,0 +1,28 @@
+{
+  "name": "ssm-env-tools",
+  "version": "1.0.0",
+  "description": "Simplify your CICD pipeline and enhance development ease with these tools designed for managing AWS Systems Manager (SSM) Environment Variables. Effortlessly sync your local environment configurations with AWS SSM, making deployment and development a breeze.",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "ssm-env-tools": "src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OfirYaron/ssm-env-tools.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OfirYaron/ssm-env-tools/issues"
+  },
+  "homepage": "https://github.com/OfirYaron/ssm-env-tools#readme",
+  "dependencies": {
+    "@aws-sdk/client-ssm": "^3.449.0",
+    "dotenv": "^16.3.1",
+    "yargs": "^17.7.2"
+  }
+}
