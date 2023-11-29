@@ -22,7 +22,9 @@
   "homepage": "https://github.com/OfirYaron/ssm-env-tools#readme",
   "dependencies": {
     "@aws-sdk/client-ssm": "^3.449.0",
+    "@aws-sdk/client-sts": "^3.461.0",
     "dotenv": "^16.3.1",
+    "readline-sync": "^1.4.10",
     "yargs": "^17.7.2"
   },
   "devDependencies": {

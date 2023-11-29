@@ -17,7 +17,7 @@ npm install -g ssm-env-tools
 Use the `pull` command to retrieve environment variables from AWS SSM and save them to a local `.env` file.
 
 ```bash
-ssm-env-tools pull --env=<environment> --service=<service> --path=<local-path-with-filename>
+ssm-env-tools pull --env=<environment> --service=<service> --path=<local-path-with-filename> [--dry-run] [--skip-prompt]
 ```
 
 - `<environment>`: Environment name.
@@ -29,7 +29,7 @@ ssm-env-tools pull --env=<environment> --service=<service> --path=<local-path-wi
 Use the `push` command to update AWS SSM with environment variables from a local `.env` file.
 
 ```bash
-ssm-env-tools push --path=<local-path-with-filename> --env=<environment> --service=<service>
+ssm-env-tools push --path=<local-path-with-filename> --env=<environment> --service=<service> [--dry-run] [--skip-prompt]
 ```
 
 - `<local-path-with-filename>`: Local path, including the file name, to the `.env` file.
