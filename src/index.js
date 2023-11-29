@@ -26,7 +26,7 @@ yargs(process.argv.slice(2))
         type: "string",
         describe: "Output file path (default: .env.{env})",
       },
-      dryrun: {
+      dryRun: {
         type: "bool",
         demandOption: false,
         describe: "Dryrun invocation (default: false)",
@@ -39,10 +39,10 @@ yargs(process.argv.slice(2))
     },
     async (argv) => {
       const args = { 
-        ...{ path: `.env.${argv.env}`, dryrun: false, skipPrompt: false }, 
+        ...{ path: `.env.${argv.env}`, dryRun: false, skipPrompt: false }, 
         ...argv };
       // console.log("ssm-pull:", argv);
-      await ssm_to_env(argv.path, argv.env, argv.service, argv.dryrun, argv.skipPrompt);
+      await ssm_to_env(argv.path, argv.env, argv.service, argv.dryRun, argv.skipPrompt);
     }
   )
   .example("$0 pull --env='stage' --service='website' --path='.env'")
@@ -65,10 +65,10 @@ yargs(process.argv.slice(2))
         demandOption: true,
         describe: "Service Name (website/backend)",
       },
-      dryrun: {
+      dryRun: {
         type: "bool",
         demandOption: false,
-        describe: "Dryrun invocation (default: false)",
+        describe: "Dry-run invocation (default: false)",
       },
       skipPrompt: {
         type: "bool",
@@ -78,10 +78,10 @@ yargs(process.argv.slice(2))
     },
     function (argv) {
       const args = { 
-        ...{ path: `.env.${argv.env}`, dryrun: false, skipPrompt: false }, 
+        ...{ path: `.env.${argv.env}`, dryRun: false, skipPrompt: false }, 
         ...argv };
       // console.log("env-to-ssm:", args);
-      env_to_ssm(args.path, args.env, args.service, args.dryrun, args.skipPrompt);
+      env_to_ssm(args.path, args.env, args.service, args.dryRun, args.skipPrompt);
     }
   )
   .example("$0 push --path='.env' --env='stage' --service='website'")

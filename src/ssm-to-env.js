@@ -36,7 +36,7 @@ const getServiceParameters = async (environment, segmentName) => {
   }));
 }
 
-module.exports = async (path, environment, serviceName, dryrun, hidePrompt) => {
+module.exports = async (path, environment, serviceName, dryRun, hidePrompt) => {
   if (!hidePrompt) {
     const stsResponse = await stsClient.send(new GetCallerIdentityCommand({}));
     console.log('This script will use your AWS credentials to create .env file from SSM Parameters .');
@@ -54,14 +54,14 @@ module.exports = async (path, environment, serviceName, dryrun, hidePrompt) => {
   console.log(`# getting parameters for ${serviceName} at environment: ${environment}`);
   const serviceEnvs = await getServiceParameters(environment, serviceName);
 
-  if (dryrun) {
-    console.log(`# dry run: ${serviceName} at environment: ${environment} will have the following parameters:`);
+  if (dryRun) {
+    console.log(`\n# dry run: ${serviceName} at environment: ${environment} will have the following parameters:`);
     console.log(serviceEnvs.map(envParam => `${envParam.envName}="${envParam.value}"`).join("\n"));
   } else {
     // save to .env file
     fs.writeFileSync(
       path, 
       serviceEnvs.map(envParam => `${envParam.envName}="${envParam.value}"`).join("\n"));
-    console.log(`# saved parameters to ${path}`);
+    console.log(`\n# saved parameters to ${path}`);
   }
 }
