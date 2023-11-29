@@ -27,5 +27,8 @@
   },
   "devDependencies": {
     "semantic-release": "^22.0.8"
+  },
+  "release": {
+    "branches": ["main"]
   }
 }
