@@ -1,0 +1,35 @@
+# 8859  npm link
+# 8860  npm link ssm-env-tools
+# 8861  npm login
+# 8862  npm publish
+
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+
+  workflow_dispatch:  
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 14
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Release
+        run: npx semantic-release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
