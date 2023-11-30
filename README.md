@@ -1,5 +1,14 @@
 # SSM-Env-Tools
 
+<p align="center">
+  <a href="#badge">
+    <img alt="semantic-release: angular" src="https://img.shields.io/badge/semantic--release-angular-e10079?logo=semantic-release">
+  </a>
+  <a href="https://www.npmjs.com/package/semantic-release">
+    <img alt="npm latest version" src="https://img.shields.io/npm/v/ssm-env-tools/latest.svg">
+  </a>
+</p>
+
 SSM-Env-Tools is a Node.js command-line utility designed to streamline the management of AWS Systems Manager (SSM) parameters, specifically catering to the conventions `/{env}/{service}/{env_name}`. This tool simplifies the import and export of environment variables between your local development environment and AWS SSM.
 
 ## Installation
