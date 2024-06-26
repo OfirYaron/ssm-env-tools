@@ -24,7 +24,8 @@ yargs(process.argv.slice(2))
       },
       path: {
         type: "string",
-        describe: "Output file path (default: .env.{env})",
+        describe: "Output file path (default: .env)",
+        default: '.env',
       },
       dryRun: {
         type: "bool",
@@ -36,13 +37,18 @@ yargs(process.argv.slice(2))
         demandOption: false,
         describe: "Skip prompt for confirmation  (default: false)",
       },
+      region: {
+        type: "string",
+        demandOption: false,
+        describe: "AWS Region",
+      },
     },
     async (argv) => {
       const args = { 
         ...{ path: `.env.${argv.env}`, dryRun: false, skipPrompt: false }, 
         ...argv };
       // console.log("ssm-pull:", argv);
-      await ssm_to_env(argv.path, argv.env, argv.service, argv.dryRun, argv.skipPrompt);
+      await ssm_to_env(argv.path, argv.env, argv.service, argv.dryRun, argv.skipPrompt, argv.region);
     }
   )
   .example("$0 pull --env='stage' --service='website' --path='.env'")
@@ -75,13 +81,18 @@ yargs(process.argv.slice(2))
         demandOption: false,
         describe: "Skip prompt for confirmation  (default: false)",
       },
+      region: {
+        type: "string",
+        demandOption: false,
+        describe: "AWS Region",
+      },
     },
     function (argv) {
       const args = { 
         ...{ path: `.env.${argv.env}`, dryRun: false, skipPrompt: false }, 
         ...argv };
       // console.log("env-to-ssm:", args);
-      env_to_ssm(args.path, args.env, args.service, args.dryRun, args.skipPrompt);
+      env_to_ssm(args.path, args.env, args.service, args.dryRun, args.skipPrompt, args.region);
     }
   )
   .example("$0 push --path='.env' --env='stage' --service='website'")

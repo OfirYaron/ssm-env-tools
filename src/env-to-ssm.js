@@ -17,12 +17,13 @@ const stsClient = new STSClient({
 * @param {boolean} showPrompt - showing prompt before continue
 * @return {void}
 */
-module.exports = async function EnvToSSM(envPath, environment, serviceName, dryRun = false, skipPrompt) {
+module.exports = async function EnvToSSM(envPath, environment, serviceName, dryRun = false, skipPrompt, region) {
   if (!skipPrompt) {
     const stsResponse = await stsClient.send(new GetCallerIdentityCommand({}));
     console.log('This script will use your AWS credentials to create SSM Parameters from the .env file.');
     console.log('This script will use the following options:');
     console.log(`- Account: ${stsResponse.Account}`);
+    console.log(`- Region: ${region ? region : 'default'}`);
     console.log(`- Environment: ${environment}`);
     console.log(`- Service Name: ${serviceName}`);
     console.log(`- Env Path: ${envPath}`);
@@ -34,7 +35,9 @@ module.exports = async function EnvToSSM(envPath, environment, serviceName, dryR
     }
   }
 
+  // TBD: Add a check whether parameters on this 'env' and 'service' exists in case of !hidePrompt 
+
   const envObject = envUtills(envPath);
   console.log(`Found ${Object.keys(envObject).length} environment keys`);
-  object2SSM(envObject, { dryRun, environment, serviceName});
+  object2SSM(envObject, { dryRun, environment, serviceName, region});
 }

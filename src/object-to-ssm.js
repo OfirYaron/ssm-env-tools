@@ -4,7 +4,6 @@ const PER_SECOND_RATE_LIMIT = 5;
 const DEFAULT_OPTIONS = {
   verbose: false,
   dryRun: false,
-  region: 'eu-central-1',
   environment: 'stage',
   serviceName: 'acme'
 }
@@ -12,7 +11,7 @@ const DEFAULT_OPTIONS = {
 /**
  * @options optional, 
  * DEFAULT_OPTIONS = {
- *    verbose: false, dryRun: false, region: 'eu-central-1', 
+ *    verbose: false, dryRun: false, region: [default: profile region], 
  *    environment: 'stage', serviceName: 'acme'
  * }
  * @jsonObject JSON object to convert to SSM Parameters
@@ -21,6 +20,7 @@ async function createSSMParametersFromJSON(jsonObject, options = {}) {
   const mergedOptions = { ...DEFAULT_OPTIONS, ...options };
   const client = new SSMClient({
     apiVersion: '2014-11-06',
+    region: mergedOptions.region
   });
   const params = [];
 
