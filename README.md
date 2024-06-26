@@ -31,12 +31,15 @@ Use the `pull` command to retrieve environment variables from AWS SSM and save t
 npx ssm-env-tools pull --env=<environment> \
   --service=<service> \
   --path=<local-path-with-filename> \
-  [--dry-run] [--skip-prompt]
+  [--dry-run] [--skip-prompt] [--region=<region>]
 ```
 
 - `<environment>`: Environment name.
 - `<service>`: Service name.
 - `<local-path-with-filename>`: Local path, including the file name, where the `.env` file will be saved.
+- `--dry-run`: Display the environment variables that will be saved to the `.env` file without actually saving them.
+- `--skip-prompt`: Skip the prompt to confirm the saving of the environment variables to the `.env` file.
+- `--region`: AWS region where the SSM parameters are stored. If not provided, the default profile region will be used.
 
 ### Push: Update SSM with .env
 
@@ -46,12 +49,15 @@ Use the `push` command to update AWS SSM with environment variables from a local
 npx ssm-env-tools push --path=<local-path-with-filename> \
   --env=<environment> \
   --service=<service> \
-  [--dry-run] [--skip-prompt]
+  [--dry-run] [--skip-prompt] [--region=<region>]
 ```
 
 - `<local-path-with-filename>`: Local path, including the file name, to the `.env` file.
 - `<environment>`: Environment name.
 - `<service>`: Service name.
+- `--dry-run`: Display the environment variables that will be saved to AWS SSM without actually saving them.
+- `--skip-prompt`: Skip the prompt to confirm the saving of the environment variables to AWS SSM.
+- `--region`: AWS region where the SSM parameters are stored. If not provided, the default profile region will be used.
 
 ## Examples
 
