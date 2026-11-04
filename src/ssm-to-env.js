@@ -58,7 +58,7 @@ module.exports = async (path, environment, serviceName, dryRun, hidePrompt, regi
 
   // With --skip-prompt nobody can confirm the overwrite below. A typo in --env or
   // --service returns zero parameters, so refuse instead of emptying the file.
-  if (hidePrompt && !dryRun && serviceEnvs.length == 0) {
+  if (hidePrompt && !dryRun && serviceEnvs.length === 0) {
     console.error(`\nNo parameters found at /${environment}/${serviceName}/. Leaving ${path} unchanged.`);
     process.exit(1);
   }

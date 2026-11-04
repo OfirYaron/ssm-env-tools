@@ -38,6 +38,8 @@ Module._load = function load(request, ...rest) {
   return stubs[request] || originalLoad.call(this, request, ...rest);
 };
 const ssmToEnv = require('../src/ssm-to-env.js');
+// The stubs are only needed while the module under test loads its dependencies.
+Module._load = originalLoad;
 
 class Exit extends Error {
   constructor(code) {
