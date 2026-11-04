@@ -38,7 +38,7 @@ npx ssm-env-tools pull --env=<environment> \
 - `<service>`: Service name.
 - `<local-path-with-filename>`: Local path, including the file name, where the `.env` file will be saved.
 - `--dry-run`: Display the environment variables that will be saved to the `.env` file without actually saving them.
-- `--skip-prompt`: Skip the prompt to confirm the saving of the environment variables to the `.env` file.
+- `--skip-prompt`: Skip the prompt to confirm the saving of the environment variables to the `.env` file. If SSM returns no parameters, the command exits with code 1 and leaves the file unchanged.
 - `--region`: AWS region where the SSM parameters are stored. If not provided, the default profile region will be used.
 
 ### Push: Update SSM with .env

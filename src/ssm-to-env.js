@@ -56,6 +56,13 @@ module.exports = async (path, environment, serviceName, dryRun, hidePrompt, regi
   console.log(`# getting parameters for ${serviceName} at environment: ${environment}`);
   const serviceEnvs = await getServiceParameters(environment, serviceName, region);
 
+  // With --skip-prompt nobody can confirm the overwrite below. A typo in --env or
+  // --service returns zero parameters, so refuse instead of emptying the file.
+  if (hidePrompt && !dryRun && serviceEnvs.length == 0) {
+    console.error(`\nNo parameters found at /${environment}/${serviceName}/. Leaving ${path} unchanged.`);
+    process.exit(1);
+  }
+
   if (!hidePrompt && serviceEnvs.length == 0) {
     const answer = readline.question('Could not find parameters for this service.\nAre you sure you want to overwrite .env file? (y/n) ');
     if (answer.toLowerCase() !== 'y') {
