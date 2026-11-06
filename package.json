@@ -4,7 +4,7 @@
   "description": "Simplify your CICD pipeline and enhance development ease with these tools designed for managing AWS Systems Manager (SSM) Environment Variables. Effortlessly sync your local environment configurations with AWS SSM, making deployment and development a breeze.",
   "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node --test test/"
   },
   "bin": {
     "ssm-env-tools": "src/index.js"
